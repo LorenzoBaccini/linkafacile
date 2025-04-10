@@ -17,5 +17,6 @@
       "type": "image/png"
     }
   ],
-  "description": "Genera link affiliati Amazon in un attimo!"
+  "description": "Genera link affiliati Amazon in un attimo!",
+  "scope": "/linkafacile/"
 }

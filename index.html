@@ -34,7 +34,7 @@
 
     window.onload = () => {
       navigator.clipboard.readText().then(text => {
-        if (text.startsWith("https://www.amazon.")) {
+        if (!text.includes("amazon.") && !text.includes("amzn.")) {
           input.value = text;
         }
       }).catch(err => {
@@ -50,9 +50,19 @@
         actions.classList.add("hidden");
         return;
       }
+      
       let link = new URL(url);
       link.searchParams.set("tag", AFF_TAG);
-      output.textContent = `✅ Link affiliato: ${link.toString()}`;
+
+      // Crea il link come output (href)
+      let affiliateLink = document.createElement("a");
+      affiliateLink.href = link.toString();
+      affiliateLink.textContent = "✅ Link affiliato: " + link.toString();
+      affiliateLink.target = "_blank"; // Apre il link in una nuova finestra
+
+      // Aggiungi il link al DOM
+      output.innerHTML = ""; // Rimuovi eventuali precedenti
+      output.appendChild(affiliateLink); // Aggiungi il nuovo link
       output.classList.remove("hidden");
       actions.classList.remove("hidden");
 
