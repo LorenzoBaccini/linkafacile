@@ -35,7 +35,7 @@
 
     window.onload = () => {
       navigator.clipboard.readText().then(text => {
-        if (!text.includes("amazon.") && !text.includes("amzn.")) {
+        if (text.includes("amazon.") && text.includes("amzn.")) {
           input.value = text;
         }
       }).catch(err => {
@@ -46,7 +46,7 @@
     document.getElementById("incolla").onclick = async () => {
       try {
         const testo = await navigator.clipboard.readText();
-        if (!testo.includes("amazon.") && !testo.includes("amzn.")) {
+        if (testo.includes("amazon.") || testo.includes("amzn.")) {
           input.value = testo;
         } else {
           alert("Nessun link Amazon trovato negli appunti.");
