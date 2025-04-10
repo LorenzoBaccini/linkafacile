@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css" />
+  <title>LinkaFacile</title>
+</head>
+<body>
+  <main class="container">
+    <h1>🔗 LinkaFacile</h1>
+    <p>Incolla un link Amazon per generare il tuo link affiliato!</p>
+    <input id="input" type="text" placeholder="https://www.amazon.it/..." />
+    <button id="genera">🎉 Genera Link</button>
+    <div id="output" class="output hidden"></div>
+    <div id="actions" class="hidden">
+      <button id="copy">📋 Copia</button>
+      <a id="whatsapp" target="_blank">📱 WhatsApp</a>
+      <a id="telegram" target="_blank">✈️ Telegram</a>
+    </div>
+  </main>
+  <script>
+    const input = document.getElementById("input");
+    const output = document.getElementById("output");
+    const genera = document.getElementById("genera");
+    const copy = document.getElementById("copy");
+    const wa = document.getElementById("whatsapp");
+    const tg = document.getElementById("telegram");
+    const actions = document.getElementById("actions");
+
+    const AFF_TAG = "batchoffertew-21";
+
+    genera.onclick = () => {
+      let url = input.value.trim();
+      if (!url.includes("amazon.")) {
+        output.textContent = "❌ Inserisci un link Amazon valido.";
+        output.classList.remove("hidden");
+        actions.classList.add("hidden");
+        return;
+      }
+      let link = new URL(url);
+      link.searchParams.set("tag", AFF_TAG);
+      output.textContent = `✅ Link affiliato: ${link.toString()}`;
+      output.classList.remove("hidden");
+      actions.classList.remove("hidden");
+
+      // update share links
+      const encoded = encodeURIComponent(link.toString());
+      wa.href = `https://wa.me/?text=${encoded}`;
+      tg.href = `https://t.me/share/url?url=${encoded}`;
+    };
+
+    copy.onclick = () => {
+      navigator.clipboard.writeText(output.textContent.replace("✅ Link affiliato: ", ""));
+      copy.textContent = "✅ Copiato!";
+      setTimeout(() => (copy.textContent = "📋 Copia"), 1500);
+    };
+
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js");
+    }
+  </script>
+</body>
+</html>
