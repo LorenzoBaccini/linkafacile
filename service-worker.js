@@ -1,7 +1,7 @@
 self.addEventListener("install", event => {
   event.waitUntil(
     caches.open("linka-cache").then(cache => {
-      return cache.addAll(["/", "/index.html", "/style.css", "/manifest.json", "/icon-192.png", "/icon-512.png"]);
+      return cache.addAll(["/", "/index.html", "/style.css", "/manifest.json", "/icon2-192.png", "/icon2-512.png"]);
     })
   );
 });
