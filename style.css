@@ -2,8 +2,8 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  background: #fef6e4;
-  color: #001858;
+  background: #f5f7f0; /* sfondo chiaro */
+  color: #2f3e1c; /* testo verde oliva scuro */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,38 +20,59 @@ body {
   text-align: center;
 }
 
+.logo-circle {
+  width: 60px;
+  height: 60px;
+  background-color: #b4c79c;
+  color: white;
+  font-size: 2rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 0.5rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin: 0 0 1rem;
+}
+
 input {
   padding: 10px;
   width: 100%;
   margin-top: 1rem;
-  border: 2px solid #f582ae;
+  border: 2px solid #b4c79c;
   border-radius: 10px;
   font-size: 1rem;
+  box-sizing: border-box;
 }
 
 button, a {
   margin-top: 1rem;
   padding: 10px 20px;
   border: none;
-  background: #f582ae;
+  background: #b4c79c;
   color: white;
   font-size: 1rem;
   border-radius: 10px;
   cursor: pointer;
   display: inline-block;
   text-decoration: none;
+  transition: background 0.3s;
 }
 
 button:hover, a:hover {
-  background: #ffb3c6;
+  background: #9cae7d;
 }
 
 .output {
   margin-top: 1rem;
-  background: #d8eefe;
+  background: #e5ecda;
   padding: 10px;
   border-radius: 10px;
   word-break: break-word;
+  color: #2f3e1c;
 }
 
 .hidden {
