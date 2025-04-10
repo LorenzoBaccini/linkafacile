@@ -44,7 +44,7 @@
 
     genera.onclick = () => {
       let url = input.value.trim();
-      if (!url.includes("amazon.") || !url.includes("amzn.")) {
+      if (!url.includes("amazon.") && !url.includes("amzn.")) {
         output.textContent = "❌ Inserisci un link Amazon valido.";
         output.classList.remove("hidden");
         actions.classList.add("hidden");
