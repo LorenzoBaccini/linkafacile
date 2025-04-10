@@ -32,9 +32,19 @@
 
     const AFF_TAG = "batchoffertew-21";
 
+    window.onload = () => {
+      navigator.clipboard.readText().then(text => {
+        if (text.startsWith("https://www.amazon.")) {
+          input.value = text;
+        }
+      }).catch(err => {
+        console.error('Impossibile leggere il testo dagli appunti:', err);
+      });
+    };
+
     genera.onclick = () => {
       let url = input.value.trim();
-      if (!url.includes("amazon.")) {
+      if (!url.includes("amazon.") || !url.includes("amzn.")) {
         output.textContent = "❌ Inserisci un link Amazon valido.";
         output.classList.remove("hidden");
         actions.classList.add("hidden");
