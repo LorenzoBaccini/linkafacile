@@ -6,6 +6,23 @@
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="style.css" />
   <title>LinkaFacile</title>
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-79PMMEH5N5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-79PMMEH5N5'); // Sostituisci con il tuo ID GA4
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "r2695eafus"); // Sostituisci con il tuo ID Clarity
+</script>
 </head>
 <body>
   <main class="container">
@@ -32,6 +49,22 @@
     const actions = document.getElementById("actions");
 
     const AFF_TAG = "batchoffertew-21";
+
+    // Tracciamento evento generazione link
+    document.querySelector('form').addEventListener('submit', function () {
+      gtag('event', 'generate_affiliate_link', {
+        'event_category': 'conversion',
+        'event_label': 'link generato'
+      });
+    });
+
+    // Tracciamento clic sul link affiliato generato
+    document.getElementById('generated-link')?.addEventListener('click', function () {
+      gtag('event', 'click_affiliate_link', {
+        'event_category': 'engagement',
+        'event_label': 'link affiliato cliccato'
+      });
+    });
 
     window.onload = () => {
       navigator.clipboard.readText().then(text => {
@@ -69,7 +102,8 @@
       link.searchParams.set("tag", AFF_TAG);
 
       // Crea il link come output (href)
-      let affiliateLink = document.createElement("a");
+      let generatedLink = document.createElement("a");
+      generatedLink.id = "generated-link";  
       affiliateLink.href = link.toString();
       affiliateLink.textContent = "✅ Link affiliato: " + link.toString();
       affiliateLink.target = "_blank"; // Apre il link in una nuova finestra
