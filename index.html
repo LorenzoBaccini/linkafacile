@@ -51,7 +51,7 @@
     const AFF_TAG = "batchoffertew-21";
 
     // Tracciamento evento generazione link
-    document.querySelector('form').addEventListener('submit', function () {
+    document.getElementById('genera').addEventListener('click', function () {
       gtag('event', 'generate_affiliate_link', {
         'event_category': 'conversion',
         'event_label': 'link generato'
