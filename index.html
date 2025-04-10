@@ -13,6 +13,7 @@
     <h1>LinkaFacile</h1>
     <p>Incolla un link Amazon per generare il tuo link affiliato!</p>
     <input id="input" type="text" placeholder="https://www.amazon.it/..." />
+    <button id="incolla" class="btn">📋 Incolla dagli appunti</button>
     <button id="genera">🎉 Genera Link</button>
     <div id="output" class="output hidden"></div>
     <div id="actions" class="hidden">
@@ -40,6 +41,19 @@
       }).catch(err => {
         console.error('Impossibile leggere il testo dagli appunti:', err);
       });
+    };
+
+    document.getElementById("incolla").onclick = async () => {
+      try {
+        const testo = await navigator.clipboard.readText();
+        if (testo.includes("amazon.")) {
+          input.value = testo;
+        } else {
+          alert("Nessun link Amazon trovato negli appunti.");
+        }
+      } catch (e) {
+        alert("Impossibile leggere gli appunti. Incolla manualmente.");
+      }
     };
 
     genera.onclick = () => {
